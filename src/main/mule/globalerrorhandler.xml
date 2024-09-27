@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<configuration doc:name="Configuration" doc:id="7a701549-d133-4d49-af74-ccb1e3981b02" defaultErrorHandler-ref="globalerrorhandlerError_Handler" />
+	<error-handler name="globalerrorhandlerError_Handler" doc:id="9934bfe3-e668-4763-be38-0cd5ea0d6e30" >
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="579d73ef-8dbb-42cb-95fa-52e861bef6a9" type="STREAM_MAXIMUM_SIZE_EXCEEDED">
+			<ee:transform doc:name="Transform Message" doc:id="0fd6fe0e-dd86-420f-afcd-6cdd86b951ff" >
+				<ee:message >
+					<ee:set-payload ><![CDATA["Global Error On Continue"]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f7e05931-86f9-430d-a726-04fff324f8b1" type="STREAM_MAXIMUM_SIZE_EXCEEDED">
+			<ee:transform doc:name="Transform Message" doc:id="696dffce-6160-4874-a89b-fba867b10efd" >
+				<ee:message >
+					<ee:set-payload ><![CDATA["Global Error On Propagate"]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+	</error-handler>
+</mule>
